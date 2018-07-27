@@ -1,0 +1,23 @@
+<p>Hello</p>
+
+<% provide(:title, 'Map') %>
+<h1>Map</h1>
+<div id="map" style="height:500px; width:1000px">
+    <%= 
+    map(:center => {
+        :latlng => [49.2827290, -123.1207380],
+        :zoom => 15
+      },
+      :markers => [
+        {
+           :latlng => [49.2819160, -123.1083170],
+           :popup => "Hello!"
+        }
+      ]
+    )
+    %>
+</div>
+
+<p><%= navigator.geolocation.getCurrentPosition %></p>
+
+
