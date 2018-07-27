@@ -1,5 +1,3 @@
-<p>Hello</p>
-
 <% provide(:title, 'Map') %>
 <h1>Map</h1>
 <div id="map" style="height:500px; width:1000px">
@@ -8,16 +6,30 @@
         :latlng => [49.2827290, -123.1207380],
         :zoom => 15
       },
-      :markers => [
-        {
-           :latlng => [49.2819160, -123.1083170],
-           :popup => "Hello!"
-        }
-      ]
     )
     %>
 </div>
 
-<p><%= navigator.geolocation.getCurrentPosition %></p>
+<script type='text/javascript'>
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position){
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      });
 
+      map.locate({setView: true, maxZoom: 15});
+      function onLocationFound(e) {
+
+        L.marker(e.latlng).addTo(map)
+        .bindPopup("You are here").openPopup();
+
+        L.marker([49.2827290, -123.1207380]).addTo(map)
+        .bindPopup("Sitter 1");
+
+      }
+      map.on('locationfound', onLocationFound);
+  }else {
+      alert("Geolocation API is not supported in your browser. :(");
+  }
+</script>
 
