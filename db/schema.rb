@@ -10,18 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_07_27_042821) do
-=======
 ActiveRecord::Schema.define(version: 2018_07_28_000941) do
->>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
-  create_table "users", force: :cascade do |t|
-=======
   create_table "availabilities", force: :cascade do |t|
     t.integer "sitter_id"
     t.date "avail_date"
@@ -56,7 +49,6 @@ ActiveRecord::Schema.define(version: 2018_07_28_000941) do
     t.string "email"
     t.string "password_digest"
     t.string "avatar"
->>>>>>> master
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

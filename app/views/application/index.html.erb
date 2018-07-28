@@ -1,4 +1,39 @@
-<%= react_component("HelloWorld", { greeting: "Hello" }) %>
-<div>
-    <p>turtle 🐢</p>
+<% provide(:title, 'Map') %>
+<h1>Map</h1>
+
+<div> <%= @sitter.latitude %>, <%= @sitter.longitude %> </div>
+
+<div id="map" style="height:500px; width:1000px">
+	<%= 
+	map(:center => {
+		:latlng => [49.2827290, -123.1207380],
+		:zoom => 15
+	  },
+	)
+	%>
 </div>
+
+<script type='text/javascript'>
+
+  if (navigator.geolocation) {
+	  navigator.geolocation.getCurrentPosition(function(position){
+	  var latitude = position.coords.latitude;
+	  var longitude = position.coords.longitude;
+	  });
+
+	  map.locate({setView: true, maxZoom: 15});
+	  function onLocationFound(e) {
+
+		L.marker(e.latlng).addTo(map)
+		.bindPopup("You are here").openPopup();
+
+		L.marker(['<%=@sitter.latitude%>', '<%=@sitter.longitude%>']).addTo(map)
+		.bindPopup("Sitter 1");
+
+	  }
+	  map.on('locationfound', onLocationFound);
+  }else {
+	  alert("Geolocation API is not supported in your browser. :(");
+  }
+</script>
+
