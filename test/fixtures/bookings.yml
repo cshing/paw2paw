@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  sitter_id: 1
+  booked_date: 2018-07-28
+
+two:
+  user_id: 1
+  sitter_id: 1
+  booked_date: 2018-07-28
