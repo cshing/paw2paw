@@ -20,10 +20,10 @@
 	  var longitude = position.coords.longitude;
 	  });
 
-	  map.locate({setView: true, maxZoom: 15});
+	  map.locate({setView: false, maxZoom: 15});
 	  function onLocationFound(e) {
 
-		L.marker(e.latlng).addTo(map)
+		L.map('map').setView(e.latlng, 13)
 		.bindPopup("You are here").openPopup();
 
 		L.marker([49.2827290, -123.1207380]).addTo(map)

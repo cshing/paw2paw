@@ -1,7 +1,10 @@
 <% provide(:title, 'Map') %>
 <h1>Map</h1>
 
-<div> <%= @sitter.latitude %>, <%= @sitter.longitude %> </div>
+<div> 
+    <%= @sitter.latitude %>, <%= @sitter.longitude %> 
+
+</div>
 
 <div id="map" style="height:500px; width:1000px">
 	<%= 
@@ -25,10 +28,13 @@
 	  function onLocationFound(e) {
 
 		L.marker(e.latlng).addTo(map)
-		.bindPopup("You are here").openPopup();
+        .bindPopup("You are here").openPopup();
+        
+        L.marker(['<%=@sitter.latitude%>', '<%=@sitter.longitude%>']).addTo(map)
+		.bindPopup("Sitter 1");
 
 		L.marker(['<%=@sitter.latitude%>', '<%=@sitter.longitude%>']).addTo(map)
-		.bindPopup("Sitter 1");
+		.bindPopup("Sitter 2");
 
 	  }
 	  map.on('locationfound', onLocationFound);

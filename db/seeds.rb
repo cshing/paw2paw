@@ -18,19 +18,37 @@ users = User.create([
     email: 'bob@bob.com',
     password_digest: '1234',
     avatar: ''
+    },
+    {first_name: 'Charlie',
+    last_name: 'Case',
+    email: 'charlie@charlie.com',
+    password_digest: '1234',
+    avatar: ''
     }
 ])
 
-sitters = Sitter.create({
-    name: 'Alice',
-    address: '198 W Hastings St. Vancouver, BC V6B 1H2',
-    summary: "I've been a dog mom for 5 years, I love doggies.",
-    rules: 'Prefer small and medium dogs',
-    price: 30,
-    latitude: 49.282223,
-    longitude: -123.109442,
-    user_id: 1
-})
+sitters = Sitter.create([
+    {
+        name: 'Alice',
+        address: '198 W Hastings St. Vancouver, BC V6B 1H2',
+        summary: "I've been a dog mom for 5 years, I love doggies.",
+        rules: 'Prefer small and medium dogs',
+        price: 30,
+        latitude: 49.282223,
+        longitude: -123.109442,
+        user_id: 1
+    },
+    {
+        name: 'Charlie',
+        address: 'Eihu Lane, Vancouver, BC V6G, Canada',
+        summary: "I've been a dog mom for 3 years, I love doggies.",
+        rules: 'Prefer small dogs',
+        price: 20,
+        latitude: 49.290625,
+        longitude: -123.133273,
+        user_id: 3
+    }
+])
 
 availabilities = Availability.create([
     {
