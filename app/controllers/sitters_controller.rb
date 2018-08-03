@@ -3,12 +3,11 @@ class SittersController < ApplicationController
   # @users = User.all.order(created_at: :desc)
   
   def index
-    @sitters = Sitter.all.order(created_at: :desc)
-    @lat_lng = [params[:lat],params[:lng]].join(",")
-    puts 'sitter controller line12', @lat_lng
-
-    #if deployed, can get user's current location geocoded by request.remote_ip.
-    #puts 'sitter controller line 7', request.remote_ip
+		@current_user_lat_lng = [params[:lat],params[:lng]].join(",")
+		
+		@sitters = Sitter.near([49.2813326, -123.11404999999999], 999, order: 'distance')
+		# @sitters = Sitter.near([@current_user_lat_lng], 99999, order: 'distance')
+		# currently can't get sitters order by distance because @current_user_lat_lng is ajax get after index page is loaded
   end
 
   def show
