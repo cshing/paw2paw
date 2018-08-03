@@ -4,6 +4,11 @@ class SittersController < ApplicationController
   
   def index
     @sitters = Sitter.all.order(created_at: :desc)
+    @lat_lng = [params[:lat],params[:lng]].join(",")
+    puts 'sitter controller line12', @lat_lng
+
+    #if deployed, can get user's current location geocoded by request.remote_ip.
+    #puts 'sitter controller line 7', request.remote_ip
   end
 
   def show

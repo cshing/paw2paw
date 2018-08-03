@@ -30,23 +30,38 @@
   if (navigator.geolocation) {
 	  navigator.geolocation.getCurrentPosition(function(position){
 	  var latitude = position.coords.latitude;
-	  var longitude = position.coords.longitude;
-	  });
+		var longitude = position.coords.longitude;
+		
+		$.ajax({
+			type: 'GET',
+			url: '/sitters',
+			data: { lat: latitude, lng: longitude },
+			contentType: 'application/json',
+			dataType: 'json'
+			}).done(function(data){
+					console.log(data)
+			});
+		});
+		
+	  function geoSuccess(p){
+			$.post('/sitters',{lat:p.coords.latitude, lng:p.coords.longitude});
+		}
 
 	  map.locate({setView: true, maxZoom: 14.5});
 	  function onLocationFound(e) {
 
-		L.marker(e.latlng).addTo(map)
-    .bindPopup("You are here").openPopup();
+			L.marker(e.latlng).addTo(map)
+			.bindPopup("You are here").openPopup();
     
-    <% @sitters.each do |sitter| %>
-      L.marker([<%=sitter.latitude%>, <%=sitter.longitude%>]).addTo(map)
-      .bindPopup("This is Sitter : <%=sitter.name%>");
-    <% end %>
-        
-	  }
-	  map.on('locationfound', onLocationFound);
-  }else {
+			<% @sitters.each do |sitter| %>
+				L.marker([<%=sitter.latitude%>, <%=sitter.longitude%>]).addTo(map)
+				.bindPopup("This is Sitter : <%=sitter.name%>");
+			<% end %>
+			
+			}
+			map.on('locationfound', onLocationFound);
+
+  } else {
 	  alert("Geolocation API is not supported in your browser. :(");
   }
 </script>
