@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get :bookings_show, path: 'bookings/:id'
   end 
 
-  resources :sitters, only: [:index, :show, :new, :create, :update, :edit] do 
+  resources :sitters, only: [:index, :show, :new, :create, :update, :edit] do
     resources :bookings, only: [:index, :new, :show, :create, :edit] do
       patch :accept
       patch :reject
@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   
   resources :sessions, path: 'login', only: [:new, :create]
   resources :sessions, path: 'logout', only: [:destroy]
+
+  get '/location' => 'application#location'
+
   
 end

@@ -1,14 +1,14 @@
 class SittersController < ApplicationController
   # I want to be able to use the user table's info to get the avatar
-  # @users = User.all.order(created_at: :desc)
+	# @users = User.all.order(created_at: :desc)
   
-  def index
-		@current_user_lat_lng = [params[:lat],params[:lng]].join(",")
-		
-		@sitters = Sitter.near([49.2813326, -123.11404999999999], 999, order: 'distance')
-		# @sitters = Sitter.near([@current_user_lat_lng], 99999, order: 'distance')
-		# currently can't get sitters order by distance because @current_user_lat_lng is ajax get after index page is loaded
-  end
+	def index
+		@current_latlng = [params[:lat],params[:lng]].join(",")
+		@sitters = Sitter.near([@current_latlng], 99999, order: 'distance')
+		puts 'sitter controller', @current_latlng
+		# @sitters = Sitter.near([49.2813326, -123.11404999999999], 99999, order: 'distance')
+		# currently can't get sitters order by distance because @current_latlng is ajax get after index page is loaded
+	end
 
   def show
     @user = current_sitter

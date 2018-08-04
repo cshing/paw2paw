@@ -11,9 +11,14 @@ class ApplicationController < ActionController::Base
 		if current_user
 			@current_sitter = Sitter.find_by(user_id: current_user.id)
 		end
+    end
+    
+    def location
+		@current_latlng = [params[:lat],params[:lng]].join(",")
+		@sitters = Sitter.near([@current_latlng], 99999, order: 'distance')
 	end
 
-	helper_method :current_user, :current_sitter
+	helper_method :current_user, :current_sitter, :current_location
 	
 	def authorize
 		redirect_to '/login/new' unless current_user
