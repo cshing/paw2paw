@@ -10,12 +10,12 @@
 Pet owners can use Paw 2 Paw to find reliable sitters nearby. Sitters can accept/reject booking requests. After the event is over, pet owners can make reviews for sitters. Sitters can edit sitter profile and add availabilities. Pet owners(regular users) can also become sitters. 
 
 ## Features
-- Users can find sitters nearby base on their current location.
+- Users can find sitters nearby based on their current location.
 - Users can see the reviews and ratings of sitters.
-- Users can make booking with sitters.
+- Users can make booking requests with sitters.
 - Users can write reviews for sitters.
 - Users can become sitters.
-- Sitters can choose to accept or reject incoming booking request.
+- Sitters can choose to accept or reject incoming booking requests.
 - Sitters can add availabities and edit their profiles.
 
 ## Technical Information / Stack
